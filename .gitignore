@@ -1,0 +1,25 @@
+# Ignore build artifacts
+*.o
+*.out
+*.a
+*.so
+*.exe
+
+# Ignore debug files
+*.dSYM/
+*.ipdb
+*.pdb
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+
+# Ignore directories
+bin/
+obj/
+build/
+dist/
