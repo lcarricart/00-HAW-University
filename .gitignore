@@ -17,6 +17,10 @@
 *.swp
 *.swo
 *~
+*.tlog
+*.ilk
+*.recipe
+*.idb
 
 # Ignore directories
 bin/
