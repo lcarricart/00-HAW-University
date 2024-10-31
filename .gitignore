@@ -27,3 +27,11 @@ bin/
 obj/
 build/
 dist/
+
+# Ignore IDE-specific directories:
+*.idea/
+*.vscode/
+
+# Ignore other temporary or system files:
+*.DS_Store
+*Thumbs.db
