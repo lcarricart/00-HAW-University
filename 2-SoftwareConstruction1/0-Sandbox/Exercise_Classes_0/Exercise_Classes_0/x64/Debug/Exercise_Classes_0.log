@@ -1,4 +1,0 @@
-﻿  app.c
-C:\Users\luchi\Desktop\Lucho\Education\HAW Hamburg\1st Semester\Software Construction\MyProjects\Exercise_Classes_0\Exercise_Classes_0\app.c(24,9): warning C4477: 'printf' : format string '%Lf' requires an argument of type 'long double', but variadic argument 1 has type 'int'
-C:\Users\luchi\Desktop\Lucho\Education\HAW Hamburg\1st Semester\Software Construction\MyProjects\Exercise_Classes_0\Exercise_Classes_0\app.c(24,9): warning C4477: 'printf' : format string '%Lf' requires an argument of type 'long double', but variadic argument 2 has type 'int'
-  Exercise_Classes_0.vcxproj -> C:\Users\luchi\Desktop\Lucho\Education\HAW Hamburg\1st Semester\Software Construction\MyProjects\Exercise_Classes_0\x64\Debug\Exercise_Classes_0.exe

@@ -1,3 +1,0 @@
-﻿  app.c
-C:\Users\luchi\Desktop\Lucho\Education\HAW Hamburg\1st Semester\Software Construction\MyProjects\0-Sandbox\Exercise0_playing_around\Exercise0_part2\app.c(39,15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Exercise0_part2.vcxproj -> C:\Users\luchi\Desktop\Lucho\Education\HAW Hamburg\1st Semester\Software Construction\MyProjects\0-Sandbox\Exercise0_playing_around\x64\Debug\Exercise0_part2.exe
