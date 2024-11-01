@@ -27,6 +27,8 @@ bin/
 obj/
 build/
 dist/
+Debug/
+x64/
 
 # Ignore IDE-specific directories:
 *.idea/
@@ -35,3 +37,11 @@ dist/
 # Ignore other temporary or system files:
 *.DS_Store
 *Thumbs.db
+
+# Other unimportant files
+*.vcxproj
+*.filters
+*.user
+*.txt
+*.obj
+*.sln
