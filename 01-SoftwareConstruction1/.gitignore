@@ -33,6 +33,7 @@ x64/
 # Ignore IDE-specific directories:
 *.idea/
 *.vscode/
+*.vs/
 
 # Ignore other temporary or system files:
 *.DS_Store
