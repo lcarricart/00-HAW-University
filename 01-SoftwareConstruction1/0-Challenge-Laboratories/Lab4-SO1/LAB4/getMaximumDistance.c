@@ -1,5 +1,5 @@
 // Calculates accurate global distance using the formula (15.4)
-double distanceKm(double lat1, double lon1, double lat2, double lon2);
+extern double distanceKm(double lat1, double lon1, double lat2, double lon2);
 
 // Determines two geographical points with the largest distance in between, and returns the value in km.
 double getMaximumDistance(char locations[][50], double coordinatesPart2[][2], int sizeRows, int* maxIndex1, int* maxIndex2)

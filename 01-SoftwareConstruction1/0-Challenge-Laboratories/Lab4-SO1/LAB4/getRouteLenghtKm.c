@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // Calculates accurate global distance using the formula (15.4)
-double distanceKm(double lat1, double lon1, double lat2, double lon2);
+extern double distanceKm(double lat1, double lon1, double lat2, double lon2);
 
 // Determines the distance of a route in km.
 double getRouteLenghtKm(double* array, int rows, int cols)

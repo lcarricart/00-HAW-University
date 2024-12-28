@@ -15,22 +15,22 @@
 #include <stdlib.h> // To use system("cls") clearing the screen.
 
 // Determines the distance of a route in km.
-double getRouteLenghtKm(double* array, int rows, int cols);
+extern double getRouteLenghtKm(double* array, int rows, int cols);
 
 // Prints all the locations stored into the array, ensuring that the .txt file was read correctly.
-void arrayPrinter(double* arrayLatitude, int sizeRows, int sizeCols);
+extern void arrayPrinter(double* arrayLatitude, int sizeRows, int sizeCols);
 
 // Read coordinates from a .txt file
-void readGeoRouteFile(const char* filename, double arrays[][2], int arraySize);
+extern void readGeoRouteFile(const char* filename, double arrays[][2], int arraySize);
 
 // Convert degrees to radians
-double toRadians(double degrees);
+extern double toRadians(double degrees);
 
 // Read "GeoPoints.txt" and pass its values to one array of strings and one matrix of coordinates.
-void readGeoPointsFile(char* fileName2, char locations[][50], double coordinatesPart2[][2], int arraySize2);
+extern void readGeoPointsFile(char* fileName2, char locations[][50], double coordinatesPart2[][2], int arraySize2);
  
 // Determines two geographical points with the largest distance in between, and returns the value in km.
-double getMaximumDistance(char locations[][50], double coordinatesPart2[][2], int sizeRows, int* maxIndex1, int* maxIndex2);
+extern double getMaximumDistance(char locations[][50], double coordinatesPart2[][2], int sizeRows, int* maxIndex1, int* maxIndex2);
 
 int main(void)
 {
@@ -38,8 +38,8 @@ int main(void)
 	// The second bracket makes reference to the amount of values contained in each of them.
 	// !!! With this line Im fixing the size of my array and the code is not prepared to read an amount of values higher than the size of the array !!!
 	double arrays[9][2] = { 0 }; 
-	char* fileName = "C:\\Users\\luchi\\Desktop\\SO-Exercises\\SO-Exercises\\LAB4\\GeoRoute.txt"; // File to read from. Dont forget to use "\\" instead of "\".
-	char* fileName2 = "C:\\Users\\luchi\\Desktop\\SO-Exercises\\SO-Exercises\\LAB4\\GeoPoints.txt";
+	char* fileName = "C:\\Users\\luchi\\source\\repos\\lcarricart\\HAW-University\\01-SoftwareConstruction1\\0-Challenge-Laboratories\\Lab4-SO1\\GeoRoute.txt"; // File to read from. Dont forget to use "\\" instead of "\".
+	char* fileName2 = "C:\\Users\\luchi\\source\\repos\\lcarricart\\HAW-University\\01-SoftwareConstruction1\\0-Challenge-Laboratories\\Lab4-SO1\\GeoPoints.txt";
 	double routeLenght = 0;
 	double maximum = 0;
 	char selection = ' ';
@@ -174,3 +174,10 @@ int main(void)
 
 	return 0;
 }
+
+/* 
+* Key take - home's of this exercise:
+* - 'External' and 'static' linkage between different files.
+* - All functions and variables are declared 'external' by default, and that's why my program was working without and #include
+* (the explicit declaration is kinda obvious)
+*/
