@@ -34,13 +34,14 @@ int main(void)
 	 *		- End Of File (EOF) is encountered.
 	 * When fgets encounters a newline ('\n'), it includes that newline in the string (unless the buffer is too small).
 	 * It then places a '\0' (null terminator) at the end of the string to mark its end in memory.
-	 * You should also clean the buffer after using it if your input was bigger than the buffer size.
+	 * Instead of cleaning the buffer, Marc only adds one error handling, that I implemented in my code.
 	*/
-	while (((trash = getchar()) != '\n') && (trash != EOF));
+	if (fgets(inputString, MAX_SIZE, stdin) != NULL)
+	{
+		wordCounter = numberOfWords(inputString);
 
-	wordCounter = numberOfWords(inputString);
-
-	printf("\nNumber of words: %d", wordCounter);
+		printf("\nNumber of words: %d", wordCounter);
+	}
 
 	getchar();
 	return 0;
