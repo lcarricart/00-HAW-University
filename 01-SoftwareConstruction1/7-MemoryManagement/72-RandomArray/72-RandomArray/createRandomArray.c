@@ -1,5 +1,6 @@
 /* Include files */
 #include <stdlib.h>
+#include <time.h>
 
 /* Allocates an int array and initializes it with random numbers
 *
@@ -20,6 +21,8 @@ int* createRandomArray(int amountElements, int minValue, int maxValue)
 		perror("Memory allocation for randomArray failed");
 		exit(EXIT_FAILURE);
 	}
+
+	srand(time(NULL));
 
 	for (int i = 0; i < amountElements; i++)
 	{

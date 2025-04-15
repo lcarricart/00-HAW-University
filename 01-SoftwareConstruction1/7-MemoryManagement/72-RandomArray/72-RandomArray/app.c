@@ -30,6 +30,8 @@ int main(void)
 	// Program Description
 	printf("Program description: create a randomly initialized array based on user input such as: \n- Number of elements \n- Minimum posible random numnber \n- Maximum possible random number\n\n");
 
+	printf("%d ", sizeof("1"));
+
 	// User Input
 	printf("Enter the array size and data range (with spaces: \"size min max\"): ");
 	if (scanf("%d %d %d", &numElements, &minimumValue, &maximumValue) != 3)
