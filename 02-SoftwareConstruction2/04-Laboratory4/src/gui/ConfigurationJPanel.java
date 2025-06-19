@@ -43,7 +43,7 @@ public class ConfigurationJPanel extends JPanel implements ActionListener {
 
 		refreshBtn.addActionListener(e -> drawingPanel.regenerateScene());
 
-		JButton setGround = new JButton("Poodle");
+		JButton setGround = new JButton("Regenerate Poodles");
 		setGround.setFont(BUTTON_FONT);
 		setGround.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(setGround);

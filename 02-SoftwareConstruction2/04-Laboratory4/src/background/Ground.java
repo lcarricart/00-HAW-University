@@ -19,10 +19,10 @@ public class Ground {
     private int screenWidth, screenHeight;
     private int yShiftGround;
     
-    private Puddle puddle;						//composite
+    private Puddle puddle;								//composite
     
-    private LennonGlasses myLennonGlasses;		//composite
-    private BeachGlasses myBeachGlasses;		//composite
+    private LennonGlasses myLennonGlasses;				//composite
+    private BeachGlasses myBeachGlasses;				//composite
 	
 	public Ground (int screenWidth, int screenHeight) {
 		this.screenWidth = screenWidth;
@@ -46,10 +46,10 @@ public class Ground {
         while (notMaxAmount(goodPuddles) && notMaxAttempts(attempts)) {
         	int sizePuddle  = RandomNumber.between(minSize, maxSize);
         	int sizeGlasses = sizePuddle / 2;
-            int separationMargin = maxSize;
+            int sreenMargin = maxSize;
         	
-            int x 			 = RandomNumber.between(xLeftMargin, screenWidth - separationMargin);
-            int y 			 = RandomNumber.between(yShiftGround, screenHeight - separationMargin);
+            int x 			 = RandomNumber.between(xLeftMargin, screenWidth - sreenMargin);
+            int y 			 = RandomNumber.between(yShiftGround, screenHeight - sreenMargin);
             int wearsGlasses = RandomNumber.between(0, 2);
             
             if (wearsGlasses == 0) {
@@ -64,6 +64,7 @@ public class Ground {
 
             boolean overlaps = false;
             
+            // !!!!!!!!!!!!!!!! CHANGE THIS TO A WHILE LOOP, very simple !!!!!!!!!!!!!!!!!!!!!!!
             for (LocatedRectangle existing : goodPuddles) {
                 if (puddle.intersects(existing)) {
                     overlaps = true;
@@ -85,21 +86,29 @@ public class Ground {
 		
 		myGrass.draw(yShiftGround, screenWidth, screenHeight);
 		
-    	// Draw the dogs at the end of the scene, so they overlap everything.
+    	// Drawing happens after drawing all other objects, so they overlap them
+		drawGoodPoodles();
+	}
+	
+	public void drawGoodPoodles() {
         for (LocatedRectangle other : goodPuddles) {
             other.draw();
         }
 	}
     
-    public boolean notMaxAmount(ArrayList<LocatedRectangle> puddles) {
+    private boolean notMaxAmount(ArrayList<LocatedRectangle> puddles) {
     	return puddles.size() < MAX_PUDDLES;
     }
     
-    public boolean counterNotMax(int i, ArrayList<LocatedRectangle> puddles) {
-    	return i < puddles.size();
+    private boolean notMaxAttempts(int attempts) {
+    	return attempts < 300;
     }
     
-    public boolean notMaxAttempts(int attempts) {
-    	return attempts < 300;
+    public ArrayList<LocatedRectangle> getExistingPoodles() {
+    	return goodPuddles;
+    }
+    
+    public void setExistingPoodles(int location) {
+    	// IF touched point is in between the rectangle of a Poodle, then remove it from the ArrayList goodPuddles. Redrawing shouldnt happen inside a setter() I think
     }
 }

@@ -99,10 +99,10 @@ public class WelcomeMenuJPanel extends JPanel {
         	public void actionPerformed(ActionEvent e) {
         		fakeBtn.setVisible(false);
         		
-                JLabel hiActionMessage = new JLabel(">:(");
-                hiActionMessage.setFont(LABEL_FONT);
-                hiActionMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
-                add(hiActionMessage);
+                JLabel fakeActionMessage = new JLabel(">:(");
+                fakeActionMessage.setFont(LABEL_FONT);
+                fakeActionMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
+                add(fakeActionMessage);
         	}
         });
     }
