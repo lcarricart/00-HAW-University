@@ -14,7 +14,7 @@ public class Unlocked extends State {
 	@Override
 	public State open() {
 		System.out.println("Unlocked --> Open");
-		return Closed.getInstance();
+		return Open.getInstance();
 	}
 
 	@Override
