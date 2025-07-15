@@ -17,11 +17,14 @@ Collision logic guarantees no two poodles overlap. The final deliverable demonst
 
 ---
 
-## 📌 UML Diagram (LAB2!)
+## 📌 Spoiler (LAB2!)
 
 Below is the UML diagram representing the intricate class hierarchy of the project in LAB4_Final:
 
 ![GIF](SO2_LAB_Spoiler.gif)
+
+## 📌 UML Diagram
+
 ![UML1](UML1.png)
 ![UML2](UML2.png)
 ![UML3](UML3.png)
