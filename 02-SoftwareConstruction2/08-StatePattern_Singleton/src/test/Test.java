@@ -10,5 +10,6 @@ public class Test {
 		myDoor.lock();
 		myDoor.unlock();
 		myDoor.open();
+		myDoor.lock();
 	}
 }
