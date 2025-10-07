@@ -1,4 +1,4 @@
-package setSlides1;
+package setSlides01;
 
 public class Money {
 	private int euroCents;

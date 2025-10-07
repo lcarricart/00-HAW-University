@@ -1,4 +1,4 @@
-package setSlides5;
+package setSlides05;
 
 public class Poster implements Resizable {
 	private int width, height;

@@ -1,4 +1,4 @@
-package setSlides3;
+package setSlides03;
 
 import java.util.ArrayList;
 

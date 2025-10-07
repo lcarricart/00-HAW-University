@@ -38,7 +38,7 @@ int main(void)
 	// The second bracket makes reference to the amount of values contained in each of them.
 	// !!! With this line Im fixing the size of my array and the code is not prepared to read an amount of values higher than the size of the array !!!
 	double arrays[9][2] = { 0 }; 
-	char* fileName = "C:\\Users\\luchi\\source\\repos\\lcarricart\\HAW-University\\01-SoftwareConstruction1\\0-Challenge-Laboratories\\Lab4-SO1\\GeoRoute.txt"; // File to read from. Dont forget to use "\\" instead of "\".
+	char* fileName = "C:\\Users\\luchi\\Desktop\\aFile.txt"; // File to read from. Dont forget to use "\\" instead of "\".
 	char* fileName2 = "C:\\Users\\luchi\\source\\repos\\lcarricart\\HAW-University\\01-SoftwareConstruction1\\0-Challenge-Laboratories\\Lab4-SO1\\GeoPoints.txt";
 	double routeLenght = 0;
 	double maximum = 0;

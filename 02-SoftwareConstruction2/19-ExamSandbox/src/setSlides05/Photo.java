@@ -1,4 +1,4 @@
-package setSlides5;
+package setSlides05;
 
 public class Photo implements Resizable {
 	private int width, height;

@@ -1,6 +1,6 @@
-package setSlides8;
+package setSlides08;
 
 public interface LightState {
-    void next(TrafficLight tl);   // transition
-    String color();               // "RED", "GREEN", "YELLOW"
+    public void next(TrafficLight tl);   // transition
+    public String color();               // "RED", "GREEN", "YELLOW"
 }

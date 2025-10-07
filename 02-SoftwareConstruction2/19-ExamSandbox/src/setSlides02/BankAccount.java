@@ -1,4 +1,4 @@
-package setSlides2;
+package setSlides02;
 
 /* BankAccount.java */
 public class BankAccount {

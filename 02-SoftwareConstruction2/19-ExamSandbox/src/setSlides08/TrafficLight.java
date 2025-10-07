@@ -1,4 +1,4 @@
-package setSlides8;
+package setSlides08;
 
 /* TrafficLight.java  (context) */
 public class TrafficLight {

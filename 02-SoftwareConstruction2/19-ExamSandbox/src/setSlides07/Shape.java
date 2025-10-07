@@ -1,4 +1,4 @@
-package setSlides7;
+package setSlides07;
 
 public abstract class Shape {
     private final String name;

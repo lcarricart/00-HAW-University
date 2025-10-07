@@ -2,11 +2,14 @@ package aMain;
 
 import java.util.ArrayList;
 
-import setSlides2.*;
-import setSlides4.*;
-import setSlides5.*;
-import setSlides7.*;
-import setSlides8.*;
+import setSlides02.*;
+import setSlides04.*;
+import setSlides05.*;
+import setSlides07.*;
+import setSlides07_2.*;
+import setSlides08.*;
+import setSlides09.*;
+import setSlides10.*;
 
 public class TestClass {
 //	------------------------- setSlides4 -------------------------
@@ -70,12 +73,48 @@ public class TestClass {
 //			};
 //		for (Shape s : shapes) { s.report(); }
 		
-//		------------------------- setSlides8 -------------------------
-		TrafficLight mySemaphore = new TrafficLight();
+//		------------------------- setSlides7.2 -------------------------
+//		Text t = new BracketDecorator(new BoldDecorator(new BracketDecorator(new PlainText("hello"))));
+//		System.out.println(t.render());
 		
-		for (int i = 0; i < 5; i++) {
-			System.out.println(mySemaphore.display());
-			mySemaphore.tick();
-		}
+//		------------------------- setSlides8 -------------------------
+//		TrafficLight mySemaphore = new TrafficLight();
+//		
+//		for (int i = 0; i < 5; i++) {
+//			System.out.println(mySemaphore.display());
+//			mySemaphore.tick();
+//		}
+//		
+//		------------------------- setSlides9 -------------------------
+//		CoffeeMachine cm = null;
+//		
+//		try {
+//			cm = new CoffeeMachine(400, 50);
+//			
+//		    cm.brew(CoffeeType.ESPRESSO);
+//		    cm.brew(CoffeeType.AMERICANO);
+//		    cm.brew(CoffeeType.LATTE);        // triggers exception
+//		} catch (OutOfIngredientException ex) {
+//		    System.out.println("\nMachine error: " + ex.getMessage());
+//		} finally {
+//			if (cm != null) {
+//				cm.close();
+//			}
+//		}
+//		
+//		------------------------- setSlides10 -------------------------
+//		WeatherStation ws = new WeatherStation();
+//		Observer c  = new ConsoleDisplay(ws);
+//		Observer f  = new FahrenheitDisplay(ws);
+//
+//		ws.attach(c);
+//		ws.attach(f);
+//
+//		ws.setTemperature(20);   // should print both °C and °F
+//		ws.setTemperature(30);   // prints updated values
+//
+//		ws.detach(c);
+//		ws.setTemperature(25);   // only °F display prints
+//				
 	}
 }

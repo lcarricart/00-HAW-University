@@ -1,4 +1,4 @@
-package setSlides4;
+package setSlides04;
 
 public class EmailMessage extends Message {
 

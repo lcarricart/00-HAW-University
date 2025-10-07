@@ -1,4 +1,4 @@
-package setSlides7;
+package setSlides07;
 
 public class Circle extends Shape {
 	private double radius;

@@ -1,4 +1,4 @@
-package setSlides5;
+package setSlides05;
 
 public interface Resizable {
     int getWidth();

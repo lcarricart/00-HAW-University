@@ -1,4 +1,4 @@
-package setSlides7;
+package setSlides07;
 
 public class Rectangle extends Shape {
 	private double width, height;

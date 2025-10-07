@@ -1,4 +1,4 @@
-package setSlides8;
+package setSlides08;
 
 public class YellowState implements LightState {
 	private final String color = "YELLOW";

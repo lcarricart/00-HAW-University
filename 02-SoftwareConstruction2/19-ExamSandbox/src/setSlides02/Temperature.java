@@ -1,4 +1,4 @@
-package setSlides2;
+package setSlides02;
 
 public class Temperature {
 	private Temperature() { }

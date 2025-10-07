@@ -1,4 +1,4 @@
-package setSlides3;
+package setSlides03;
 
 public class Door {
     private int width;
