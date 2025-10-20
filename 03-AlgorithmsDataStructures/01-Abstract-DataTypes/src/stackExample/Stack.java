@@ -12,7 +12,7 @@ public class Stack {
 	}
 	
 	public void push(String s) {
-		names.append(s);
+		names.addToFront(s);
 	}
 	
 	public String top() {
