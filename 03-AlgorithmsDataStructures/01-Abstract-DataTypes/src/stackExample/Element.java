@@ -9,6 +9,10 @@ public class Element {
 		next = null;
 	}
 	
+	public Element() {
+		
+	}
+	
 	public void setNext(Element nextOne) {
 		next = nextOne;
 	}

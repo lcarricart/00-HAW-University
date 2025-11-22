@@ -103,18 +103,18 @@ public class TestClass {
 //		}
 //		
 //		------------------------- setSlides10 -------------------------
-//		WeatherStation ws = new WeatherStation();
-//		Observer c  = new ConsoleDisplay(ws);
-//		Observer f  = new FahrenheitDisplay(ws);
-//
-//		ws.attach(c);
-//		ws.attach(f);
-//
-//		ws.setTemperature(20);   // should print both °C and °F
-//		ws.setTemperature(30);   // prints updated values
-//
-//		ws.detach(c);
-//		ws.setTemperature(25);   // only °F display prints
-//				
+		WeatherStation ws = new WeatherStation();
+		Observer c  = new ConsoleDisplay(ws);
+		Observer f  = new FahrenheitDisplay(ws);
+
+		ws.attach(c);
+		ws.attach(f);
+
+		ws.setTemperature(20);   // should print both °C and °F
+		ws.setTemperature(30);   // prints updated values
+
+		ws.detach(c);
+		ws.setTemperature(25);   // only °F display prints
+				
 	}
 }

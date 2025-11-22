@@ -8,7 +8,7 @@ public class Stack {
 	}
 	
 	public boolean empty() {
-		return names.empty();
+		return names.isEmpty();
 	}
 	
 	public void push(String s) {

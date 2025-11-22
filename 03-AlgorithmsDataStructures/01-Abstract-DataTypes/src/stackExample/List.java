@@ -10,7 +10,7 @@ public class List {
 		tail = null;
 	}
 	
-	public boolean empty() {
+	public boolean isEmpty() {
 		return head == null;
 	}
 	
@@ -19,7 +19,7 @@ public class List {
 		e.setNext(head);
 		
 		head = e;
-		if (this.empty()) {
+		if (this.isEmpty()) {
 			tail = e;
 		}
 		
@@ -40,10 +40,30 @@ public class List {
 	
 	public void includeAt(int position, String s) {
 		// include s at position
+		Element newOne = new Element(s);
+		Element current = getHead();
+		int listPos = 1;
+		
+		if (position == 1) {
+			newOne.setNext(current);
+			head = newOne;
+		} else {
+			while (listPos != position-1) {
+				current = current.getNext();
+				listPos++;
+			}
+			
+			Element oldNext = current.getNext();
+			current.setNext(newOne);
+			current.getNext().setNext(oldNext);
+		}
+		
+		numberOfElements++;
 	}
 	
 	public void removeAt(int position) {
 		// removes element at position
+		
 		numberOfElements--;
 	}
 	
@@ -54,6 +74,7 @@ public class List {
 	public Element removeHead() {
 		Element oldHead = head;
 		head = head.getNext();
+		numberOfElements--;
 		return oldHead;
 	}
 	
@@ -81,7 +102,7 @@ public class List {
 		Element current = getHead();
 		String result = "";
 		
-		if (this.empty()) {
+		if (this.isEmpty()) {
 			result = "List is empty";
 		}
 		
