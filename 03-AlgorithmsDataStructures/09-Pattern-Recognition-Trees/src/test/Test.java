@@ -26,7 +26,9 @@ public class Test {
 		
 		System.out.println("Welcome to the Pattern Recognition Test");
 		System.out.println("Please write down a phone number following any of the permitted formats:");
-		System.out.println("    - (+49) 0175 477 7564\n");
+		System.out.println("    - (+49) 0175 477 7564");
+		System.out.println("    - +49 0175 477 7564");
+		System.out.println("    - 0175 477 7564\n");
 		System.out.println("Phone number: ");
 		
 		String userInput = scanner.nextLine();

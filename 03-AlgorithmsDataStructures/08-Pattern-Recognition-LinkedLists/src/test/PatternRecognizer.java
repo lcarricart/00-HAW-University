@@ -11,7 +11,7 @@ public class PatternRecognizer {
 		// Sometimes, programmers use a "Dummy Node" or a "Start Node" at the very beginning that doesn't actually check anything. It just points to the real first node.
 		this.rootNode = new ParenthesisOpenNode();
 		
-		// Keep the node abstract to reuse it
+		// Define the pattern
 		AbstractNode pattern[] = new AbstractNode[19];
 		pattern[0] = rootNode;
 		pattern[1] = new PlusNode();
@@ -33,6 +33,7 @@ public class PatternRecognizer {
 		pattern[17] = new DigitNode();
 		pattern[18] = new DigitNode();
 		
+		// Establish the Linked List (I'm not using the Java class, but this is the behavior of my Node class)
 		for (int i = 0; i < pattern.length - 1; i++) {
 			pattern[i].setNext(pattern[i+1]);
 		}
