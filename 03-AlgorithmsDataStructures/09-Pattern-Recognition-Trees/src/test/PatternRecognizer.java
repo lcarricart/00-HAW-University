@@ -112,7 +112,7 @@ public class PatternRecognizer {
 					
 					currentNode = currentNode.getChild(0);
 					
-					if (currentNode != null) {
+					if (currentNode != null && i < input.length()) {
 						validFlag = currentNode.isValid(input.charAt(i));
 					}
 				}
