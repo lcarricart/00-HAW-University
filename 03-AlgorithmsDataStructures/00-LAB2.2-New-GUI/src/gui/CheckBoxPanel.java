@@ -5,21 +5,20 @@
    manipulated and displayed with a Java GUI application.
  *******************************************************************************************************************
  * Authors: 
- * 	- Luciano Carricart, https://github.com/lcarricart/
- * 	- Georgii Molyboga, https://github.com/Georgemolyboga/
+ * - Luciano Carricart, https://github.com/lcarricart/
+ * - Georgii Molyboga, https://github.com/Georgemolyboga/
  * Status: Information Engineering students, HAW Hamburg, Germany.
  * Date: November 2024
  *******************************************************************************************************************
  * Public methods:
- * 	- getZerosBox() - Returns checkbox for displaying zero crossings in the plot
- * 	- getExtremasBox() - Returns checkbox for showing local maxima and minima points
- * 	- getHistogramBox() - Returns checkbox for switching beetween line plot and histogram mode
+ * - getZerosBox() - Returns checkbox for displaying zero crossings in the plot
+ * - getExtremasBox() - Returns checkbox for showing local maxima and minima points
+ * - getHistogramBox() - Returns checkbox for switching beetween line plot and histogram mode
  *******************************************************************************************************************/
 
 package gui;
 
 import java.awt.Component;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
@@ -50,7 +49,8 @@ public class CheckBoxPanel extends JPanel{
 
         showHistogramCheckBox.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(showHistogramCheckBox);
-        add(Box.createVerticalStrut(30));
+        // Reduced from 30 to 10
+        add(Box.createVerticalStrut(10));
     }
     
     private void styleCheckBox(JCheckBox checkBox) {
@@ -61,15 +61,7 @@ public class CheckBoxPanel extends JPanel{
         checkBox.setOpaque(false);
     }
     
-    public JCheckBox getZerosBox() {
-    	return showZerosCheckBox;
-    }
-    
-    public JCheckBox getExtremasBox() {
-    	return showExtremasCheckBox;
-    }
-    
-    public JCheckBox getHistogramBox() {
-    	return showHistogramCheckBox;
-    }
+    public JCheckBox getZerosBox() { return showZerosCheckBox; }
+    public JCheckBox getExtremasBox() { return showExtremasCheckBox; }
+    public JCheckBox getHistogramBox() { return showHistogramCheckBox; }
 }

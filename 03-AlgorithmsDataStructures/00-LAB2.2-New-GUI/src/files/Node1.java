@@ -1,5 +1,5 @@
 package files;
 
-public interface Node {
+public interface Node1 {
 	public int getKey();
 }

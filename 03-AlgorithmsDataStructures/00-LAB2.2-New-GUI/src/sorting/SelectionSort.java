@@ -4,27 +4,34 @@ public class SelectionSort extends AbstractSort {
 	
 	@Override
 	public void sortAlgorithm() {
-		sort(0, sorted.size() - 1);
+		if (sorted != null && !sorted.isEmpty()) {
+			sort(0, sorted.size() - 1);
+		}
 	}
 	
 	private void sort(int start, int end) {
 		
 		for (int i = start; i < end; i++) {
 			
-			int temp = -1;
-			
+			int minIndex = i;
 			Double minValue = sorted.get(i);
 			
-			for (int j = i; j < end; j++) {
+			for (int j = i + 1; j <= end; j++) {
 				
+				comparisonCount++;
+				
+				notifyUpdate(i, j); 
+				// ---------------------
+
 				if (sorted.get(j) < minValue) {
-					temp = j;
+					minIndex = j;
 					minValue = sorted.get(j);
 				}
 			}
 			
-			if(temp != -1) {
-				swap(i, temp);
+			if(minIndex != i) {
+				swap(i, minIndex);
+				swapCount++;
 			}
 		}
 	}

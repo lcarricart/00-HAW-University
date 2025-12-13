@@ -31,12 +31,12 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import files.SensorData;
-import sorting.QuickSort;
+import sorting.AbstractSort;
 import gui.ModernTheme;
 
 public class DataPlotter {
     private SensorData sensorData;
-    private QuickSort quickSort;
+    private AbstractSort sortAlgorithm; 
     private String selectedColumn1;
     private String selectedColumn2;
     private String selectedColumn3;
@@ -44,11 +44,13 @@ public class DataPlotter {
     private boolean showExtremas = false;
     private boolean showHistogram = false;
     private boolean valuesSorted = false;
+    
+    private int highlightIndex1 = -1;
+    private int highlightIndex2 = -1;
 
     public void draw(Graphics pen, Rectangle2D.Double viewPoint, int panelWidth, int panelHeight) {
         Graphics2D g2d = (Graphics2D) pen;
         
-        // Enable anti-aliasing for smoother plots
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         
@@ -74,12 +76,18 @@ public class DataPlotter {
                 drawExtremas(g2d, viewPoint, panelWidth, panelHeight, selectedColumn1);
             }
             
-            if (valuesSorted && quickSort != null && !quickSort.isEmpty()) {
-            	drawSortedFunction(g2d, viewPoint, panelWidth, panelHeight, quickSort.getSorted());
+            // Check the generic sortAlgorithm instead of specific quickSort
+            if (valuesSorted && sortAlgorithm != null && !sortAlgorithm.isEmpty()) {
+            	drawSortedFunction(g2d, viewPoint, panelWidth, panelHeight, sortAlgorithm.getSorted());
             }
         }
     }
     
+    public void setHighlights(int idx1, int idx2) {
+        this.highlightIndex1 = idx1;
+        this.highlightIndex2 = idx2;
+    }
+
     private int toScreenX(double dataX, Rectangle2D.Double viewPoint, int panelWidth) {
         double xRange = viewPoint.getWidth();
         return (int) (panelWidth * (dataX - viewPoint.getX()) / xRange);
@@ -110,6 +118,13 @@ public class DataPlotter {
 	            double x = minTime + timeRange * i / (n - 1.0);
 	            screenXPoints[i] = toScreenX(x, viewPoint, panelWidth);
 	            screenYPoints[i] = toScreenY(sorted.get(i), viewPoint, panelHeight);
+	            
+	            if (i == highlightIndex1 || i == highlightIndex2) {
+                    Color originalColor = pen.getColor();
+                    pen.setColor(Color.RED); 
+                    pen.fillOval(screenXPoints[i] - 6, screenYPoints[i] - 6, 12, 12); 
+                    pen.setColor(originalColor);
+                }
 	        }
 	        
 	        pen.drawPolyline(screenXPoints, screenYPoints, n);
@@ -224,8 +239,8 @@ public class DataPlotter {
         this.showHistogram = show;
     }
     
-    public void setQuickSort(QuickSort quickSort) {
-        this.quickSort = quickSort;
+    public void setSortAlgorithm(AbstractSort sortAlgorithm) {
+        this.sortAlgorithm = sortAlgorithm;
     }
     
     public void isSorted(boolean show) {

@@ -1,6 +1,6 @@
 package files;
 
-public class DataPoint implements Node {
+public class DataPoint implements Node1 {
 	
 	private double timestamp;
 	private double accX;

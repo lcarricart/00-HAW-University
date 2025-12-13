@@ -5,25 +5,23 @@
    manipulated and displayed with a Java GUI application.
  *******************************************************************************************************************
  * Authors: 
- * 	- Luciano Carricart, https://github.com/lcarricart/
- * 	- Georgii Molyboga, https://github.com/Georgemolyboga/
+ * - Luciano Carricart, https://github.com/lcarricart/
+ * - Georgii Molyboga, https://github.com/Georgemolyboga/
  * Status: Information Engineering students, HAW Hamburg, Germany.
  * Date: November 2024
  *******************************************************************************************************************
  * Public methods:
- * 	- getResetView() - Returns the reset view button for event listener attachment
- * 	- getImportBtn() - Returns the import button for file selection functionality
+ * - getResetView() - Returns the reset view button for event listener attachment
+ * - getImportBtn() - Returns the import button for file selection functionality
  *******************************************************************************************************************/
 
 package gui;
 
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.Dimension;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 
@@ -49,25 +47,26 @@ public class ButtonPanel extends JPanel {
         styleButton(quickSort);
         styleButton(selectionSort);
 
+        // Reduced spacing from 12 to 5 to save vertical space
         importBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(importBtn);
-        add(Box.createVerticalStrut(12));
+        add(Box.createVerticalStrut(5));
 
         resetView.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(resetView);
-        add(Box.createVerticalStrut(12));
+        add(Box.createVerticalStrut(5));
         
         show3D.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(show3D);
-        add(Box.createVerticalStrut(12));
+        add(Box.createVerticalStrut(5));
         
         randomData.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(randomData);
-        add(Box.createVerticalStrut(12));
+        add(Box.createVerticalStrut(5));
         
         quickSort.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(quickSort);
-        add(Box.createVerticalStrut(12));
+        add(Box.createVerticalStrut(5));
         
         selectionSort.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(selectionSort);
@@ -87,27 +86,10 @@ public class ButtonPanel extends JPanel {
         button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     }
 
-    public JButton getResetView() {
-        return resetView;
-    }
-
-    public JButton getImportBtn() {
-        return importBtn;
-    }
-    
-    public JButton getShow3D() {
-        return show3D;
-    }
-    
-    public JButton getRandDataBtn() {
-        return randomData;
-    }
-    
-    public JButton getQuickSort() {
-        return quickSort;
-    }
-    
-    public JButton getSelectionSort() {
-        return selectionSort;
-    }
+    public JButton getResetView() { return resetView; }
+    public JButton getImportBtn() { return importBtn; }
+    public JButton getShow3D() { return show3D; }
+    public JButton getRandDataBtn() { return randomData; }
+    public JButton getQuickSort() { return quickSort; }
+    public JButton getSelectionSort() { return selectionSort; }
 }

@@ -5,16 +5,16 @@
    manipulated and displayed with a Java GUI application.
  *******************************************************************************************************************
  * Authors: 
- * 	- Luciano Carricart, https://github.com/lcarricart/
- * 	- Georgii Molyboga, https://github.com/Georgemolyboga/
+ * - Luciano Carricart, https://github.com/lcarricart/
+ * - Georgii Molyboga, https://github.com/Georgemolyboga/
  * Status: Information Engineering students, HAW Hamburg, Germany.
  * Date: November 2024
  *******************************************************************************************************************
  * Public methods:
- * 	- populateComboBoxes() - Fills combo boxes with available data column names from imported file
- * 	- getComboBox1() - Returns first combo box for plot selection
- * 	- getComboBox2() - Returns second combo box for plot selection
- * 	- getComboBox3() - Returns third combo box for plot selection
+ * - populateComboBoxes() - Fills combo boxes with available data column names from imported file
+ * - getComboBox1() - Returns first combo box for plot selection
+ * - getComboBox2() - Returns second combo box for plot selection
+ * - getComboBox3() - Returns third combo box for plot selection
  *******************************************************************************************************************/
 
 package gui;
@@ -45,6 +45,8 @@ public class ComboBoxPanel extends JPanel {
         setOpaque(false);
         int desiredHeight = 30;
         
+        // --- Spacing Adjustments ---
+        
         JLabel comboLabel_QuickSort = new JLabel("Choose the data to sort");
         comboLabel_QuickSort.setFont(ModernTheme.LABEL_FONT);
         comboLabel_QuickSort.setForeground(ModernTheme.TEXT_PRIMARY);
@@ -52,7 +54,7 @@ public class ComboBoxPanel extends JPanel {
         comboLabel_QuickSort.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(comboLabel_QuickSort);
         add(quickSortBox);
-        add(Box.createVerticalStrut(60));
+        add(Box.createVerticalStrut(15)); // Reduced from 60 to 15
 
         JLabel comboLabel = new JLabel("Plot 1");
         comboLabel.setFont(ModernTheme.LABEL_FONT);
@@ -62,7 +64,7 @@ public class ComboBoxPanel extends JPanel {
         comboLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(comboLabel);
         add(comboBox);
-        add(Box.createVerticalStrut(20));
+        add(Box.createVerticalStrut(8)); // Reduced from 20 to 8
 
         JLabel comboLabel2 = new JLabel("Plot 2");
         comboLabel2.setFont(ModernTheme.LABEL_FONT);
@@ -72,7 +74,7 @@ public class ComboBoxPanel extends JPanel {
         comboLabel2.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(comboLabel2);
         add(comboBox2);
-        add(Box.createVerticalStrut(20));
+        add(Box.createVerticalStrut(8)); // Reduced from 20 to 8
 
         JLabel comboLabel3 = new JLabel("Plot 3");
         comboLabel3.setFont(ModernTheme.LABEL_FONT);
@@ -82,7 +84,7 @@ public class ComboBoxPanel extends JPanel {
         comboLabel3.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(comboLabel3);
         add(comboBox3);
-        add(Box.createVerticalStrut(20));
+        add(Box.createVerticalStrut(8)); // Reduced from 20 to 8
         
         JLabel randBoxLabel = new JLabel("Randomized Data");
         randBoxLabel.setFont(ModernTheme.LABEL_FONT);
@@ -92,7 +94,7 @@ public class ComboBoxPanel extends JPanel {
         randBoxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(randBoxLabel);
         add(randDataBox);
-        add(Box.createVerticalStrut(40));
+        add(Box.createVerticalStrut(15)); // Reduced from 40 to 15
     }
     
     private void styleComboBox(JComboBox<String> comboBox, int height) {
@@ -118,23 +120,9 @@ public class ComboBoxPanel extends JPanel {
         }
     }
     
-    public JComboBox<String> getQuickSortBox() {
-        return quickSortBox;
-    }
-
-    public JComboBox<String> getComboBox1() {
-        return comboBox;
-    }
-
-    public JComboBox<String> getComboBox2() {
-        return comboBox2;
-    }
-
-    public JComboBox<String> getComboBox3() {
-        return comboBox3;
-    }
-    
-    public JComboBox<String> getRandDataBox() {
-        return randDataBox;
-    }
+    public JComboBox<String> getQuickSortBox() { return quickSortBox; }
+    public JComboBox<String> getComboBox1() { return comboBox; }
+    public JComboBox<String> getComboBox2() { return comboBox2; }
+    public JComboBox<String> getComboBox3() { return comboBox3; }
+    public JComboBox<String> getRandDataBox() { return randDataBox; }
 }

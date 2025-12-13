@@ -23,7 +23,7 @@ public class TestNode {
 		sensorData.addDataPoint(new DataPoint(1.0, 0.0, 0.0, 0.98, 0.0, 0.0, 0.0, 20.5));
 		
 //		System.out.println("--- Flight Data Points ---");
-//		for (Node node : data) {
+//		for (Node1 node : data) {
 //			System.out.println(node.toString());
 //		}
 		

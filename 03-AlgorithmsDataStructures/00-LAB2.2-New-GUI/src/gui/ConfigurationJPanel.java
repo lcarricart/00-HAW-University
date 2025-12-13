@@ -19,7 +19,6 @@
 package gui;
 
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,9 +34,6 @@ import drawingTool.RandomNumber;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -47,6 +43,7 @@ import files.DataFileWorker;
 import files.SensorData;
 import sorting.QuickSort;
 import sorting.SelectionSort;
+import sorting.AbstractSort;
 
 import javax.swing.JOptionPane;
 import threeD.CubeRotationJFrame;
@@ -72,17 +69,8 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
         super();
         this.drawingJPanel = drawingJPanel;
         this.quickSort = quickSort;
+        this.selectionSort = new SelectionSort(); // FIXED: Initialized SelectionSort
         initialization();
-    }
-
-    public enum EnumPlot1 {
-        SENSOR1, SENSOR2, SENSOR3, SENSOR4;
-    }
-    public enum EnumPlot2 {
-        ITEM1, ITEM2, ITEM3, ITEM4, ITEM5;
-    }
-    public enum EnumPlot3 {
-        DATA1, DATA2, DATA3;
     }
 
     private void initialization() {
@@ -90,21 +78,21 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
         setBackground(ModernTheme.PANEL_DARK);
         setBorder(new CompoundBorder(
             BorderFactory.createMatteBorder(0, 1, 0, 0, ModernTheme.BORDER_COLOR),
-            new EmptyBorder(ModernTheme.PADDING_LARGE, ModernTheme.PADDING_MEDIUM, ModernTheme.PADDING_LARGE, ModernTheme.PADDING_MEDIUM)
+            new EmptyBorder(10, 10, 10, 10) 
         ));
         setPreferredSize(new Dimension(280, 0));
 
-        add(Box.createVerticalStrut(10));
+        add(Box.createVerticalStrut(5)); 
         JLabel title = new JLabel("Sensors Toolkit");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(ModernTheme.TITLE_FONT);
         title.setForeground(ModernTheme.TEXT_PRIMARY);
         add(title);
-        add(Box.createVerticalStrut(20));
+        add(Box.createVerticalStrut(10)); 
 
         buttonPanel = new ButtonPanel();
         add(buttonPanel);
-        add(Box.createVerticalStrut(10));
+        add(Box.createVerticalStrut(5)); 
 
         comboBoxPanel = new ComboBoxPanel();
         add(comboBoxPanel);
@@ -114,11 +102,11 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
         analysisLabel.setFont(ModernTheme.LABEL_FONT);
         analysisLabel.setForeground(ModernTheme.TEXT_PRIMARY);
         add(analysisLabel);
-        add(Box.createVerticalStrut(10));
+        add(Box.createVerticalStrut(5)); 
         
         checkBoxPanel = new CheckBoxPanel();
         add(checkBoxPanel);
-        add(Box.createVerticalStrut(30));
+        add(Box.createVerticalStrut(10)); 
 
         JLabel sliderLabel = new JLabel("Zoom Slider");
         sliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -132,7 +120,7 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
         scaleSlider.setMajorTickSpacing(0);
         add(sliderLabel);
         add(scaleSlider);
-        add(Box.createVerticalStrut(30));
+        add(Box.createVerticalStrut(10)); 
         
         add(Box.createVerticalGlue());
 
@@ -142,7 +130,7 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
     private void addListeners() {
         buttonPanel.getImportBtn().addActionListener(this);
         buttonPanel.getResetView().addActionListener(this);
-        buttonPanel.getShow3D().addActionListener(this);	
+        buttonPanel.getShow3D().addActionListener(this);  
         buttonPanel.getQuickSort().addActionListener(this);
         buttonPanel.getSelectionSort().addActionListener(this);
         buttonPanel.getRandDataBtn().addActionListener(this);
@@ -174,14 +162,9 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
             SensorData data = worker.loadData(SwingUtilities.getWindowAncestor(this));
 
             if (data != null && !data.isEmpty()) {
-                System.out.println("Data loaded: " + data.getSize() + " points");
-                System.out.println("Columns: " + String.join(", ", data.getDataColumnNames()));
-                System.out.println("First timestamp: " + data.getTimestamps().get(0));
-                
                 drawingJPanel.getScene().setSensorData(data);
-
-                // provide data to sorting module
                 quickSort.setSensorData(data);
+                selectionSort.setSensorData(data); // Provide data to selectionSort too
 
                 comboBoxPanel.populateComboBoxes(data.getDataColumnNames()); 
 
@@ -207,7 +190,6 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
                 }
                 comboBoxPanel.getQuickSortBox().addActionListener(this);
 
-                System.out.println("Imported " + data.getSize() + " data points)");
                 drawingJPanel.requestFocusInWindow();
                 drawingJPanel.repaint();
             }
@@ -231,72 +213,33 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
         }
         
         else if (source == buttonPanel.getRandDataBtn()) {
-        	if (randomDataCounter == 0) {
-        		previousSensorData = drawingJPanel.getScene().getSensorData();
-        		System.out.println("Saved previous data: " + (previousSensorData == null ? "null" : previousSensorData.getSize() + " points"));
-        	}
-        	SensorData randomData = generateRandomData();
-        	drawingJPanel.getScene().setSensorData(randomData);
-        	comboBoxPanel.populateComboBoxes(randomData.getDataColumnNames());
-        	
-        	// Just add a new random data option to the combobox
-        	comboBoxPanel.getRandDataBox().addItem("Random " + randomDataCounter);
-        	comboBoxPanel.getRandDataBox().setSelectedIndex(comboBoxPanel.getRandDataBox().getItemCount() - 1);
-        	comboBoxPanel.getQuickSortBox().addItem("Random " + randomDataCounter);
-        	System.out.println("Generated Random " + randomDataCounter + " with " + randomData.getSize() + " data points");
-        	randomDataCounter++;
+            if (randomDataCounter == 0) {
+                previousSensorData = drawingJPanel.getScene().getSensorData();
+            }
+            SensorData randomData = generateRandomData();
+            drawingJPanel.getScene().setSensorData(randomData);
+            
+            // Pass random data to sorts
+            quickSort.setSensorData(randomData);
+            selectionSort.setSensorData(randomData);
+            
+            comboBoxPanel.populateComboBoxes(randomData.getDataColumnNames());
+            
+            comboBoxPanel.getRandDataBox().addItem("Random " + randomDataCounter);
+            comboBoxPanel.getRandDataBox().setSelectedIndex(comboBoxPanel.getRandDataBox().getItemCount() - 1);
+            comboBoxPanel.getQuickSortBox().addItem("Random " + randomDataCounter);
+            randomDataCounter++;
         }
         
         else if (source == buttonPanel.getQuickSort()) {
-        	SensorData data = drawingJPanel.getScene().getSensorData();
-        	if (data != null && !data.isEmpty()) {
-        		// ensure the sort data matches current selection
-        		int index = comboBoxPanel.getQuickSortBox().getSelectedIndex();
-        		if (index == 0) {
-        			JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please select a column to sort.", "No Column Selected", JOptionPane.INFORMATION_MESSAGE);
-        		} else {
-	        		String[] columns = data.getDataColumnNames();
-	        		if (index - 1 < columns.length) {
-	        			quickSort.setSortData(columns[index - 1]);
-	        		}
-	        		quickSort.start();
-	        		
-	        		drawingJPanel.getScene().getDataPlotter().setQuickSort(quickSort);
-	        		drawingJPanel.getScene().getDataPlotter().isSorted(true);
-	                drawingJPanel.repaint();
-        		}
-        	}
-        	else {
-        		JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please import/choose sensor data first.", "No Data", JOptionPane.INFORMATION_MESSAGE);
-        	}
+            handleSorting(quickSort);
         }
         
         else if (source == buttonPanel.getSelectionSort()) {
-        	SensorData data = drawingJPanel.getScene().getSensorData();
-        	if (data != null && !data.isEmpty()) {
-        		// ensure the sort data matches current selection
-        		int index = comboBoxPanel.getQuickSortBox().getSelectedIndex();
-        		if (index == 0) {
-        			JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please select a column to sort.", "No Column Selected", JOptionPane.INFORMATION_MESSAGE);
-        		} else {
-	        		String[] columns = data.getDataColumnNames();
-	        		if (index - 1 < columns.length) {
-	        			quickSort.setSortData(columns[index - 1]);
-	        		}
-	        		quickSort.start();
-	        		
-	        		drawingJPanel.getScene().getDataPlotter().setQuickSort(quickSort);
-	        		drawingJPanel.getScene().getDataPlotter().isSorted(true);
-	                drawingJPanel.repaint();
-        		}
-        	}
-        	else {
-        		JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please import/choose sensor data first.", "No Data", JOptionPane.INFORMATION_MESSAGE);
-        	}
+            handleSorting(selectionSort); 
         }
         
         else if (source == comboBoxPanel.getComboBox1()) {
-        	
             int index = comboBoxPanel.getComboBox1().getSelectedIndex();
             if (index < 1) { 
                 drawingJPanel.getScene().getDataPlotter().setSelectedColumn1(null);
@@ -309,8 +252,8 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
             drawingJPanel.getScene().rescaleToSelectedData();
             drawingJPanel.repaint();
         } 
+        
         else if (source == comboBoxPanel.getComboBox2()) {
-        	
             int index = comboBoxPanel.getComboBox2().getSelectedIndex();
             if (index < 1) {
                 drawingJPanel.getScene().getDataPlotter().setSelectedColumn2(null);
@@ -324,7 +267,6 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
             drawingJPanel.repaint();
         } 
         else if (source == comboBoxPanel.getComboBox3()) {
-        	
             int index = comboBoxPanel.getComboBox3().getSelectedIndex();
             if (index < 1) {
                 drawingJPanel.getScene().getDataPlotter().setSelectedColumn3(null);
@@ -339,40 +281,45 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
         } 
         
         else if (source == comboBoxPanel.getRandDataBox()) {
-        	int index = comboBoxPanel.getRandDataBox().getSelectedIndex();
-        	
-        	if (index == 0) {
-        		System.out.println("Restoring previous data: " + (previousSensorData == null ? "null" : previousSensorData.getSize() + " points"));
-        		drawingJPanel.getScene().setSensorData(previousSensorData);
-        		randomDataCounter = 0;
-        		comboBoxPanel.getRandDataBox().removeActionListener(this);
-        		comboBoxPanel.getRandDataBox().removeAllItems();
-        		comboBoxPanel.getRandDataBox().addItem("Empty");
-        		comboBoxPanel.getRandDataBox().addActionListener(this);
-        		comboBoxPanel.getQuickSortBox().removeActionListener(this);
-        		comboBoxPanel.getQuickSortBox().removeAllItems();
-        		comboBoxPanel.getQuickSortBox().addItem("None");
-        		if (previousSensorData != null) {
-        			for (String column : previousSensorData.getDataColumnNames()) {
-        				comboBoxPanel.getQuickSortBox().addItem(column);
-        			}
-        		}
-        		comboBoxPanel.getQuickSortBox().addActionListener(this);
-        		if (previousSensorData != null) {
-        			comboBoxPanel.populateComboBoxes(previousSensorData.getDataColumnNames());
-        			drawingJPanel.getScene().getDataPlotter().setSelectedColumn1(previousSensorData.getDataColumnNames()[0]);
-        		} else {
-        			drawingJPanel.getScene().getDataPlotter().setSelectedColumn1(null);
-        			drawingJPanel.getScene().getDataPlotter().setSelectedColumn2(null);
-        			drawingJPanel.getScene().getDataPlotter().setSelectedColumn3(null);
-        		}
-        	} else {
-        		SensorData randomData = drawingJPanel.getScene().getSensorData();
-        		drawingJPanel.getScene().getDataPlotter().setSelectedColumn1(randomData.getDataColumnNames()[0]);
-        	}
-        	
-        	drawingJPanel.getScene().rescaleToSelectedData();
-        	drawingJPanel.repaint();
+            int index = comboBoxPanel.getRandDataBox().getSelectedIndex();
+            
+            if (index == 0) {
+                drawingJPanel.getScene().setSensorData(previousSensorData);
+                // Reset sorts to previous data
+                if (previousSensorData != null) {
+                    quickSort.setSensorData(previousSensorData);
+                    selectionSort.setSensorData(previousSensorData);
+                }
+                
+                randomDataCounter = 0;
+                comboBoxPanel.getRandDataBox().removeActionListener(this);
+                comboBoxPanel.getRandDataBox().removeAllItems();
+                comboBoxPanel.getRandDataBox().addItem("Empty");
+                comboBoxPanel.getRandDataBox().addActionListener(this);
+                comboBoxPanel.getQuickSortBox().removeActionListener(this);
+                comboBoxPanel.getQuickSortBox().removeAllItems();
+                comboBoxPanel.getQuickSortBox().addItem("None");
+                if (previousSensorData != null) {
+                    for (String column : previousSensorData.getDataColumnNames()) {
+                        comboBoxPanel.getQuickSortBox().addItem(column);
+                    }
+                }
+                comboBoxPanel.getQuickSortBox().addActionListener(this);
+                if (previousSensorData != null) {
+                    comboBoxPanel.populateComboBoxes(previousSensorData.getDataColumnNames());
+                    drawingJPanel.getScene().getDataPlotter().setSelectedColumn1(previousSensorData.getDataColumnNames()[0]);
+                } else {
+                    drawingJPanel.getScene().getDataPlotter().setSelectedColumn1(null);
+                    drawingJPanel.getScene().getDataPlotter().setSelectedColumn2(null);
+                    drawingJPanel.getScene().getDataPlotter().setSelectedColumn3(null);
+                }
+            } else {
+                SensorData randomData = drawingJPanel.getScene().getSensorData();
+                drawingJPanel.getScene().getDataPlotter().setSelectedColumn1(randomData.getDataColumnNames()[0]);
+            }
+            
+            drawingJPanel.getScene().rescaleToSelectedData();
+            drawingJPanel.repaint();
         }
         
         else if (source == comboBoxPanel.getQuickSortBox()) {
@@ -380,10 +327,14 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
             
             if (index < 1) {
                 quickSort.setSortData(null);
+                selectionSort.setSortData(null);
             } else if (drawingJPanel.getScene().getSensorData() != null) {
                 String[] columns = drawingJPanel.getScene().getSensorData().getDataColumnNames();
                 if (index - 1 < columns.length) {
+                    // We don't necessarily set the data here, it's set in handleSorting
+                    // But we can preemptively set it for both just in case
                     quickSort.setSortData(columns[index - 1]);
+                    selectionSort.setSortData(columns[index - 1]);
                 }
             }
         }
@@ -402,6 +353,54 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
         }
     }
 
+    // Helper method to handle threaded sorting
+    private void handleSorting(AbstractSort sortAlgorithm) {
+        SensorData data = drawingJPanel.getScene().getSensorData();
+        if (data != null && !data.isEmpty()) {
+            int index = comboBoxPanel.getQuickSortBox().getSelectedIndex();
+            if (index == 0) {
+                JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please select a column to sort.", "No Column Selected", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                String[] columns = data.getDataColumnNames();
+                if (index - 1 < columns.length) {
+                    sortAlgorithm.setSortData(columns[index - 1]);
+                }
+                
+                // Initialize Plotter with the CURRENT sort algorithm
+                // FIXED: Using generic setter method
+                drawingJPanel.getScene().getDataPlotter().setSortAlgorithm(sortAlgorithm); 
+                drawingJPanel.getScene().getDataPlotter().isSorted(true);
+                
+                // Disable button
+                buttonPanel.getQuickSort().setEnabled(false);
+                buttonPanel.getSelectionSort().setEnabled(false);
+
+                Thread sortThread = new Thread(() -> {
+                    // Attach Listener for real-time updates
+                    sortAlgorithm.setListener((idx1, idx2) -> {
+                        drawingJPanel.getScene().getDataPlotter().setHighlights(idx1, idx2);
+                        drawingJPanel.repaint();
+                    });
+
+                    sortAlgorithm.start();
+
+                    // Cleanup
+                    drawingJPanel.getScene().getDataPlotter().setHighlights(-1, -1);
+                    drawingJPanel.repaint();
+                    
+                    SwingUtilities.invokeLater(() -> {
+                        buttonPanel.getQuickSort().setEnabled(true);
+                        buttonPanel.getSelectionSort().setEnabled(true);
+                    });
+                });
+                
+                sortThread.start();
+            }
+        } else {
+            JOptionPane.showMessageDialog(SwingUtilities.getWindowAncestor(this), "Please import/choose sensor data first.", "No Data", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
     @Override
     public void stateChanged(ChangeEvent e) {
         if (scaleSlider.isEnabled()) {
@@ -411,24 +410,24 @@ public class ConfigurationJPanel extends JPanel implements ChangeListener, Actio
     }
     
     private SensorData generateRandomData() {
-    	SensorData randomData = new SensorData();
-    	double randomPoint;
-    	
-    	double maxTimestamp = 10000.0;
-    	SensorData existingData = previousSensorData != null ? previousSensorData : drawingJPanel.getScene().getSensorData();
-    	if (existingData != null && !existingData.isEmpty()) {
-    		ArrayList<Double> timestamps = existingData.getTimestamps();
-    		maxTimestamp = timestamps.get(timestamps.size() - 1);
-    	}
-    	
-    	double timeStep = maxTimestamp / 999.0;
-    	
-    	for (int i = 0; i < 1000; i++) {
-    		double timestamp = i * timeStep;
-    		randomPoint = RandomNumber.between(-100, 100) / 100.0;
-    		randomData.addDataPoint(timestamp, randomPoint, 0, 0, 0, 0, 0, 0);
-    	}
-    	
-    	return randomData;
+        SensorData randomData = new SensorData();
+        double randomPoint;
+        
+        double maxTimestamp = 10000.0;
+        SensorData existingData = previousSensorData != null ? previousSensorData : drawingJPanel.getScene().getSensorData();
+        if (existingData != null && !existingData.isEmpty()) {
+            ArrayList<Double> timestamps = existingData.getTimestamps();
+            maxTimestamp = timestamps.get(timestamps.size() - 1);
+        }
+        
+        double timeStep = maxTimestamp / 999.0;
+        
+        for (int i = 0; i < 1000; i++) {
+            double timestamp = i * timeStep;
+            randomPoint = RandomNumber.between(-100, 100) / 100.0;
+            randomData.addDataPoint(timestamp, randomPoint, 0, 0, 0, 0, 0, 0);
+        }
+        
+        return randomData;
     }
 }
