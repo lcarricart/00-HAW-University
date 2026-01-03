@@ -10,11 +10,7 @@ import nodes.PlusNode;
 import nodes.RootNode;
 import nodes.SpaceNode;
 
-/* This class is kind of unnecessary because the tree is in fact the node (all its addChild methods and so on). This class is created to separate the algorithmic seach 
- * implementation and printing the tree (in case it is desired)
- * 
- * So far, I will not use this class
-*/
+// This class contains all the pre-defined patterns in the form of a tree. Furthermore, it provides tree management methods.
 public class PatternsTree {
 	private RootNode rootNode;
 	
@@ -35,6 +31,7 @@ public class PatternsTree {
 		// TODO (if needed)
 	}
 	
+	// Initializing helper function inside the class constructor
 	private void init() {
 		// RootNode always returns isValid() = true. It's an empty node that just points to the real first nodes (head of patternA/B/C/...)
 		this.rootNode = new RootNode();

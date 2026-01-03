@@ -1,7 +1,5 @@
 package test;
 
-import java.util.Iterator;
-
 /* This generics exercise makes no sense. The "correct" implementations don't really make proper use of generics.
  * The UML SortedBinaryTree<E> class description provided in the Laboratory Task makes sense but does not use the 
  * E type at any point; therefore, E is unnecessary.
@@ -57,7 +55,7 @@ public class TestLab3 {
 		myTree2.insert(point17);
 		
 		//myTree.printLevelOrder();
-		System.out.println("--- Iterator Visualization ---");
+		System.out.println("[Iterator Visualization]");
 		System.out.print("Tree1: ");
 		// Print the values using an iterator (in-order printing)
 		for (Node s : myTree1) {
@@ -109,8 +107,8 @@ public class TestLab3 {
         }
     }
     
+	// Print test results to verify that all relevant methods in SortedBinaryTree are working as expected
     private void printTestResults(SortedBinaryTree myTree1) {
-    	// Print "Test Results" to verify that all relevant methods in SortedBinaryTree are working as expected
         System.out.println("\n--- TEST RESULTS ---");
         
         Sensor minNode = (Sensor) myTree1.min();
