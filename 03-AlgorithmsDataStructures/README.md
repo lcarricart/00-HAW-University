@@ -10,7 +10,7 @@ The game features branching narratives, multiple endings, and a performance eval
 
 ## 🎮 How to Play
 
-You do not need to install an IDE to play. Everything you need is in the **`PLAY!`** folder.
+You do not need to install an IDE to play. Everything you need is in the **`PLAY!`** folder (inside  project "11-NoirDetective-AdventureQuest")
 
 1. Open the folder named **`PLAY!`** in this repository.
 2. Download/Unzip the file for your computer:
