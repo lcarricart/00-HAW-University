@@ -79,8 +79,4 @@ public class Graph {
 		}
 		return aPath;
 	}
-	
-//	public AdjacencyList longestPath(int node1, int length) {
-//		
-//	}
 }

@@ -40,6 +40,16 @@ public class GraphPainter{
 				{0, 0, 0, 0, 0, H, 1, 1},
 				{0, 0, 0, 0, 0, 0, H, 1},
 				{0, 0, 0, 0, 0, 0, 0, H}};
+		
+		int[][] undirectedMatrix = {
+				{H, 0, 0, 1, 1, 0, 0, 0}, // vertice 0 has two neighbours 3 and 4
+				{0, H, 1, 0, 0, 0, 1, 0}, 
+				{0, 1, H, 0, 0, 0, 0, 1}, 
+				{1, 0, 0, H, 1, 0, 0, 1},
+				{0, 0, 0, 1, H, 1, 0, 1},
+				{0, 0, 0, 0, 1, H, 1, 1},
+				{0, 0, 0, 0, 0, 0, H, 1},
+				{0, 0, 0, 0, 0, 0, 0, H}};
 
 		Graph g = new Graph(adjMatrix);
 		
