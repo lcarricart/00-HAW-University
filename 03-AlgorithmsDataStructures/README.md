@@ -7,6 +7,15 @@ This is an interactive detective fiction game developed in Java. You play as **J
 The game features branching narratives, multiple endings, and a performance evaluation system based on your detective skills.
 
 ---
+## Algorithms & Data Structures Implemented Concepts
+
+1. Storyline implemented using Graphs via Adjacency List.
+2. Dynamically updated graph based on the user's decisions.
+3. Nodes that lead to disconnected endings, and nodes that lead to the same result.
+4. The algorithm that prints the storyline (text in the screen) is fixed no matter how big the story/graph becomes.
+*See class Game, method start() to visualize these ceoncepts.*
+
+---
 
 ## 🎮 How to Play
 
