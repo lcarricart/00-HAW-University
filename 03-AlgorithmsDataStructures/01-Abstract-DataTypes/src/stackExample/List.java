@@ -1,6 +1,6 @@
 package stackExample;
 
-public class List {
+public class List implements Iterable<Element> {
 	private Element head;
 	private Element tail;
 	private int numberOfElements = 0;
@@ -16,22 +16,31 @@ public class List {
 	
 	public void addToFront(String s) {
 		Element e = new Element(s);
-		e.setNext(head);
-		
-		head = e;
-		if (this.isEmpty()) {
-			tail = e;
-		}
-		
-		numberOfElements++;
+	    
+	    if (this.isEmpty()) {
+	        tail = e;
+	    }
+	    
+	    e.setNext(head);
+	    head = e;
+	    
+	    numberOfElements++;
 	}
 	
 	public void addToEnd(String s) {
 		Element e = new Element(s);
-		tail.setNext(e);
-		
-		tail = e;
-		numberOfElements++;
+	    
+	    if (this.isEmpty()) {
+	        // Case 1: List is empty. Head and Tail are the same.
+	        head = e;
+	        tail = e;
+	    } else {
+	        // Case 2: List is not empty. Link old tail to new element.
+	        tail.setNext(e);
+	        tail = e;
+	    }
+	    
+	    numberOfElements++;
 	}
 	
 	public void emptyList() {
@@ -112,5 +121,11 @@ public class List {
 		}
 		
 		System.out.println(result);
+	}
+
+	@Override
+	public ListIterator iterator() {
+		ListIterator myIterator = new ListIterator(this);
+		return myIterator;
 	}
 }

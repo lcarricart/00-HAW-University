@@ -12,6 +12,7 @@ public class BalancedSortedBinaryTree {
 		average = findAverage(array);
 		arrayNoRoot = extractRoot(array, average);
 		bubbleSort(arrayNoRoot);
+		constructTree(arrayNoRoot);
 	}
 	
 	private int findAverage(int[] array) {
@@ -52,7 +53,7 @@ public class BalancedSortedBinaryTree {
 		return resultingArray;
 	}
 	
-	public static void bubbleSort(int[] array) {
+	public void bubbleSort(int[] array) {
 		int minValue;
 		int minIndex;
 		
@@ -71,10 +72,14 @@ public class BalancedSortedBinaryTree {
 		}
 	}
 	
-	private static void swap(int[] array, int index1, int index2) {
+	private void swap(int[] array, int index1, int index2) {
 		int temp = array[index1];
 		
 		array[index1] = array[index2];
 		array[index2] = temp;
+	}
+	
+	private void constructTree(int[] sortedArray) {
+		// headachhhhe
 	}
 }
